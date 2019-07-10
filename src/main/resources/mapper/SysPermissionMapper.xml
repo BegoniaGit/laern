@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="site.yanyan.learn.dao.SysPermissionDao">
+    <resultMap id="BaseResultMap" type="site.yanyan.learn.pojo.SysPermission">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+
+    <result column="permission_name" property="permissionName" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    	permission_id
+    	,permission_name
+    </sql>
+    <select id="getById" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_permission
+        where permission_id = #{permissionId,jdbcType=INTEGER}
+    </select>
+    <delete id="delById" parameterType="java.lang.Long">
+        delete from sys_permission
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="save" parameterType="site.yanyan.learn.pojo.SysPermission" keyProperty="id" useGeneratedKeys="true">
+        insert into sys_permission ( permission_name
+        )
+        values (  #{permissionName
+        ,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <update id="editById" parameterType="site.yanyan.learn.pojo.SysPermission">
+        update sys_permission set  permission_id = #{permissionId
+        ,jdbcType=INTEGER}
+     ,permission_name = #{permissionName,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="list" resultMap="BaseResultMap" parameterType="site.yanyan.learn.vo.SysPermissionQuery">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_permission
+        <trim prefix="where" prefixOverrides="and|or">
+        </trim>
+        order by id desc
+    </select>
+
+    <select id="pagelist" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_permission limit  #{pageNum},#{pageSize};
+    </select>
+</mapper>

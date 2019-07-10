@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="site.yanyan.learn.dao.SysUserRoleDao">
+    <resultMap id="BaseResultMap" type="site.yanyan.learn.pojo.SysUserRole">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+
+    <result column="role_id" property="roleId" jdbcType="INTEGER"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    	user_id
+    	,role_id
+    </sql>
+    <select id="getById" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_user_role
+        where user_id = #{userId,jdbcType=INTEGER} LIMIT 1
+    </select>
+    <delete id="delById" parameterType="java.lang.Long">
+        delete from sys_user_role
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="save" parameterType="site.yanyan.learn.pojo.SysUserRole" keyProperty="id" useGeneratedKeys="true">
+        insert into sys_user_role ( user_id,role_id
+        )
+        values (  #{userId,jdbcType=INTEGER ，#{roleId,jdbcType=INTEGER}
+        )
+    </insert>
+
+    <update id="editById" parameterType="site.yanyan.learn.pojo.SysUserRole">
+        update sys_user_role set  user_id = #{userId
+        ,jdbcType=INTEGER}
+     ,role_id = #{roleId,jdbcType=INTEGER}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="list" resultMap="BaseResultMap" parameterType="site.yanyan.learn.vo.SysUserRoleQuery">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_user_role
+        <trim prefix="where" prefixOverrides="and|or">
+        </trim>
+        order by id desc
+    </select>
+
+    <select id="pagelist" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_user_role limit  #{pageNum},#{pageSize};
+    </select>
+</mapper>

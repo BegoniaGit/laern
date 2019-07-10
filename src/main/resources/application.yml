@@ -1,0 +1,161 @@
+#邮箱配置
+spring:
+  profiles:
+    active: local
+  mail:
+    host: smtp.qq.com
+    port: 587
+    username: 1316952971@qq.com
+    password: lwswvgnrytizicci
+    default-encoding: UTF-8
+#mybatis配置
+#mybatis:
+#  configuration:
+#    map-underscore-to-camel-case: true  #按驼峰命名规则自动匹配到实体类上,不需要用别名
+#  mapper-locations: classpath:mapper/*.xml
+#  type-aliases-package: site.yan.model
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: site.yanyan.learn.pojo
+  configuration:
+    mapUnderscoreToCamelCase: true
+---
+spring:
+   profiles: local
+   mvc:
+     favicon:
+        enabled: true   #网站默认图标
+   resources:
+     static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:/opt/static/
+   datasource:          #数据源
+     url: jdbc:mysql://www.yanyan.site:3306/learn?useSSL=false&allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=UTF-8
+     username: root
+     password: Ca66771111
+     driver-class-name: com.mysql.jdbc.Driver
+     type: com.alibaba.druid.pool.DruidDataSource
+   dbcp2:
+      test-on-borrow: true
+      test-while-idle: true
+      time-between-eviction-runs-millis: 3600000
+      min-evictable-idle-time-millis: 300000
+      remove-abandoned-on-borrow: true
+      remove-abandoned-timeout: 1800
+      max-wait-millis: 60000
+      initial-size: 5
+      min-idle: 5
+      max-idle: 20
+      max-total: 20
+server:
+  port: 90
+
+#---
+#spring:
+#   profiles: prod
+#   mvc:
+#       favicon:
+#         enabled: false
+#   resources:
+#     static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:/opt/static/
+#   datasource:
+#       type: com.alibaba.druid.pool.DruidDataSource
+#       driverClassName: com.mysql.jdbc.Driver
+#       url: jdbc:mysql://www.yanyan.site:3306/learn?useUnicode=true&characterEncoding=utf8
+#       username: root
+#       password: Ca66771111
+#       initialSize: 1
+#       minIdle: 3
+#       maxActive: 20
+#       # 配置获取连接等待超时的时间
+#       maxWait: 60000
+#       # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+#       timeBetweenEvictionRunsMillis: 60000
+#       # 配置一个连接在池中最小生存的时间，单位是毫秒
+#       minEvictableIdleTimeMillis: 30000
+#       validationQuery: select 'x'
+#       testWhileIdle: true
+#       testOnBorrow: false
+#       testOnReturn: false
+#
+#server:
+#  port: 90
+
+#blog:   #自定义属性
+#  filePath: /opt/blog/files/
+#  database: blog
+#  mysqlExec: /usr/bin/mysqldump -uroot -pCa66771111 blog
+#  backupPath: /opt/blog/backup/
+#
+#
+#spring:
+#  application:
+#    name:  InternationalFundsTransfersWebapp
+#  profiles:
+#    include: sys-msg.properties
+#  resources:
+#    static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:/opt/static/
+#  datasource:
+#    driver-class-name: com.mysql.jdbc.Driver
+#    url: jdbc:mysql://www.yanyan.site:3306/learn?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false
+#    username: root
+#    password: Ca66771111
+#    initialSize: 5
+#    minIdle: 5
+#    maxActive: 20
+#    maxWait: 60000
+#    timeBetweenEvictionRunsMillis: 60000
+#    minEvictableIdleTimeMillis: 300000
+#    validationQuery: SELECT 1 FROM DUAL
+#    testWhileIdle: true
+#    testOnBorrow: false
+#    testOnReturn: false
+#    poolPreparedStatements: true
+#    maxPoolPreparedStatementPerConnectionSize: 20
+#    filters: stat,wall,log4j
+#    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+#  jackson:
+#    date-format: yyyy-MM-dd HH:mm:ss
+#    joda-date-time-format: yyyy-MM-dd HH:mm:ss
+#    time-zone: GMT+8
+#  mvc:
+#    servlet:
+#      load-on-startup: 1
+#  redis:
+#    host: localhost
+#    port: 6379
+#  mail:
+#    default-encoding: UTF-8
+#    host: smtp.163.com
+#    username: xxx@163.com
+#    password: xxx
+#    protocol: smtp
+#    test-connection: false
+#  cache:
+#    ehcache:
+#      config: classpath:/ehcache.xml
+#mybatis:
+#  mapper-locations: classpath:/mapper/**/**/*.xml
+#  configuration:
+#    mapUnderscoreToCamelCase: true
+#
+#pagehelper:
+#  dialect: mysql
+#  reasonable: true
+#  support-methods-arguments: true
+#  params: count=countSql
+#
+#files:
+#  path: /ac/files
+##logging:
+##  config: classpath:logback-admin.xml
+#log:
+#  level:
+#    root: info
+#    my: debug
+#  file: /ac/logs/ac-server.log
+#  maxsize: 30MB
+#token:
+#  expire:
+#    seconds: 86400
+#server:
+#  port: 90
+#
