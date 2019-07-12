@@ -21,8 +21,6 @@ public class SysRole implements Serializable {
 
 	private String name;
 
-	@ApiModelProperty(value = "创建时间")
-	private Timestamp createTime;
 
 	@ApiModelProperty(value = "修改时间")
 	private Timestamp updateTime;
@@ -46,6 +44,13 @@ public class SysRole implements Serializable {
     	 this.name= name == null ? null : name.trim();
     }
 
+	public Timestamp getUpdateTime() {
+		return updateTime;
+	}
+
+	public void setUpdateTime(Timestamp updateTime) {
+		this.updateTime = updateTime;
+	}
 
 	public void difference(SysRole obj) {
 		String defString = "";

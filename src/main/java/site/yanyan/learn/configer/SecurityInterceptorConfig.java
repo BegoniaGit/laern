@@ -7,20 +7,16 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.HandlerInterceptor;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import site.yanyan.kit.Stamp;
+import site.yanyan.learn.pojo.sys.SysUser;
+import site.yanyan.learn.utils.Base64Util;
+import site.yanyan.learn.utils.SerializeUtils;
+import site.yanyan.learn.utils.UserUtil;
 
-import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Base64;
 import java.util.Map;
@@ -33,7 +29,6 @@ import static javax.servlet.http.HttpServletResponse.SC_OK;
 public class SecurityInterceptorConfig extends HandlerInterceptorAdapter {
 
 
-    final Base64.Decoder decoder = Base64.getDecoder();
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
@@ -47,7 +42,7 @@ public class SecurityInterceptorConfig extends HandlerInterceptorAdapter {
 
         String URL = request.getRequestURI();
         for (String u : excludeUrls)
-            if(URL.equals(u))
+            if (URL.equals(u))
                 return true;
 
         //Token验证
@@ -63,20 +58,26 @@ public class SecurityInterceptorConfig extends HandlerInterceptorAdapter {
             DecodedJWT jwt = verifier.verify(token);
             Map<String, Claim> info = jwt.getClaims();
             Stamp.log("token 验证通过");
+
+            Long userId = info.get("userId").asLong();
+            Long rolrId = info.get("roleId").asLong();
+            String[] permissions = info.get("permissions").asArray(String.class);
+            SysUser sysUser = new SysUser();
+            sysUser.setUserId(userId);
+            sysUser.setRoleId(rolrId);
+            sysUser.setPermissionArray(permissions);
+            UserUtil.setCurrentUser(sysUser);
+
             return true;
 
         } catch (JWTVerificationException exception) {
             Stamp.err("token 验证异常");
             response.setStatus(SC_OK);
-            PrintWriter p= response.getWriter(); 
+            PrintWriter p = response.getWriter();
             p.println();
             p.println("{code:-1,msg:\"token验证错误\"}");
             p.close();
-
             return false;
         }
-
     }
-
-
 }

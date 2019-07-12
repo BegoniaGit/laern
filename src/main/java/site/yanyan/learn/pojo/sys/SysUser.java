@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiModelProperty;
 
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 @JsonInclude(Include.NON_NULL)
 
@@ -17,35 +18,64 @@ public class SysUser implements Serializable {
 
 	@ApiModelProperty(value = "(字符长度为1-50)")
 	@Size(min=1, max=50,message="字符长度为1-50")
-
-	private String username;
+	private transient String username;
 
 	@ApiModelProperty(value = "(字符长度为1-30)")
 	@Size(min=1, max=30,message="字符长度为1-30")
-	private String password;
+	private transient String password;
 
 	@ApiModelProperty(value = "(字符长度为1-50)")
 	@Size(min=1, max=50,message="字符长度为1-50")
-	private String email;
+	private transient String email;
 
 	@ApiModelProperty(value = "(字符长度为1-255)")
 	@Size(min=1, max=255,message="字符长度为1-255")
-	private String slogan;
+	private transient String slogan;
 
 	@ApiModelProperty(value = "(字符长度为1-20)")
 	@Size(min=1, max=20,message="字符长度为1-20")
-	private String studentId;
+	private transient String studentId;
 
 	@ApiModelProperty(value = "账户警用 0正常1禁用")
-	private Integer type;
+	private transient Integer type;
 
 	@ApiModelProperty(value = "用户角色")
-	private Long roleId;
+	private transient Long roleId;
+
+	private transient String roleName;
+
+	private transient List<SysPermission> permissions;
+
+	private transient String[] permissionArray;
 
 
     private static final long serialVersionUID = 1L;
 
-	public Long getUserId () {   
+	public String[] getPermissionArray() {
+		return permissionArray;
+	}
+
+	public void setPermissionArray(String[] permissionArray) {
+		this.permissionArray = permissionArray;
+	}
+
+	public String getRoleName() {
+		return roleName;
+	}
+
+	public void setRoleName(String roleName) {
+		this.roleName = roleName;
+	}
+
+	public List<SysPermission> getPermissions() {
+		return permissions;
+	}
+
+	public void setPermissions(List<SysPermission> permissions) {
+		this.permissions = permissions;
+	}
+
+	public Long getUserId () {
 		return userId;
 	}
 		

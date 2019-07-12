@@ -11,7 +11,7 @@ public class SerializeUtils {
         try {
             objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
             objectOutputStream.writeObject(obj);
-            String string = byteArrayOutputStream.toString("UTF-8");
+            String string = byteArrayOutputStream.toString("ISO_8859_1");
             objectOutputStream.close();
             byteArrayOutputStream.close();
             return string;
@@ -23,7 +23,7 @@ public class SerializeUtils {
     public static Object deSerialize(String str) {
         ByteArrayInputStream byteArrayInputStream = null;
         try {
-            byteArrayInputStream = new ByteArrayInputStream(str.getBytes("UTF-8"));
+            byteArrayInputStream = new ByteArrayInputStream(str.getBytes("ISO_8859_1"));
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }

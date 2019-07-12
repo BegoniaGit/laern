@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="site.yanyan.learn.dao.SysRolePermissionDao">
+<mapper namespace="site.yanyan.learn.dao.sys.SysRolePermissionDao">
     <resultMap id="BaseResultMap" type="site.yanyan.learn.pojo.sys.SysRolePermission">
         <id column="id" property="id" jdbcType="INTEGER"/>
 
@@ -10,41 +10,31 @@
     	role_id
     	,permission_id
     </sql>
-    <select id="getById" resultMap="BaseResultMap" parameterType="java.lang.Long">
+    <select id="getByRoleId" resultMap="BaseResultMap" parameterType="java.lang.Long">
         select
         <include refid="Base_Column_List"/>
         from sys_role_permission
-        where role_id = #{roleId,jdbcType=INTEGER} LIMIT 1
+        where role_id = #{roleId,jdbcType=INTEGER}
     </select>
-    <delete id="delById" parameterType="java.lang.Long">
-        delete from sys_role_permission where id = #{id,jdbcType=INTEGER}
+
+    <delete id="delByInfo" parameterType="site.yanyan.learn.pojo.sys.SysRolePermission">
+        delete from sys_role_permission
+        where role_id = #{roleId,jdbcType=INTEGER}
+        AND permission_id = #{permissionId,jdbcType=INTEGER}
     </delete>
 
-    <insert id="save" parameterType="site.yanyan.learn.pojo.sys.SysRolePermission" keyProperty="id" useGeneratedKeys="true">
+    <insert id="save" parameterType="site.yanyan.learn.pojo.sys.SysRolePermission" useGeneratedKeys="true">
         insert into sys_role_permission (role_id, permission_id
         )
         values (  #{roleId,jdbcType=INTEGER}, #{permissionId,jdbcType=INTEGER})
     </insert>
 
-    <update id="editById" parameterType="site.yanyan.learn.pojo.sys.SysRolePermission">
-        update sys_role_permission set  role_id = #{roleId
-        ,jdbcType=INTEGER}
-        ,permission_id = #{permissionId,jdbcType=INTEGER}
-        where id = #{id,jdbcType=INTEGER}
-    </update>
 
-    <select id="list" resultMap="BaseResultMap" parameterType="site.yanyan.learn.vo.SysRolePermissionQuery">
+    <select id="list" resultMap="BaseResultMap" parameterType="site.yanyan.learn.vo.sys.SysRolePermissionQuery">
         select
         <include refid="Base_Column_List"/>
         from sys_role_permission
-        <trim prefix="where" prefixOverrides="and|or">
-        </trim>
-        order by roleId desc
+        order by role_id ASC
     </select>
 
-    <select id="pagelist" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List"/>
-        from sys_role_permission limit  #{pageNum},#{pageSize};
-    </select>
 </mapper>

@@ -39,7 +39,7 @@ public class SwaggerConfig {
                         .contact(new Contact("言言无绝期", "www.yanyan.site", "zhaoxubin2016@live.com")).version("1.0")
                         .build())
                 .select().paths(PathSelectors.any())
-                .apis(RequestHandlerSelectors.basePackage("site.yanyan.learn.controller.manage")).build()
+                .apis(RequestHandlerSelectors.basePackage("site.yanyan.learn.controller.sys")).build()
                 .globalOperationParameters(SwaggerConfig.getParamList());
     }
 
@@ -70,26 +70,4 @@ public class SwaggerConfig {
         pars.add(timePar.build());
         return pars;
     }
-
-
-//    @Bean
-//    public Docket createRestApi() {
-//        return new Docket(DocumentationType.SWAGGER_2)
-//                .apiInfo(apiInfo())
-//                .select()
-//                .apis(RequestHandlerSelectors.basePackage("site.yanyan.learn.controller"))
-//                .paths(PathSelectors.any())
-//                .build();
-//    }
-//
-//    private ApiInfo apiInfo() {
-//        return new ApiInfoBuilder()
-//                .title("Spring Boot中使用Swagger2构建RESTful API")
-//                .description("rest api 文档构建利器")
-//                .termsOfServiceUrl("http://blog.csdn.net/itguangit")
-//                .contact("itguang")
-//                .version("1.0")
-//                .build();
-//    }
-
 }

@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="site.yanyan.learn.dao.SysRoleDao">
+<mapper namespace="site.yanyan.learn.dao.sys.SysRoleDao">
     <resultMap id="BaseResultMap" type="site.yanyan.learn.pojo.sys.SysRole">
         <id column="id" property="id" jdbcType="INTEGER"/>
         <result column="name" property="name" jdbcType="VARCHAR"/>
-        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
         <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
     </resultMap>
     <sql id="Base_Column_List">
     	role_id
     	,name
-    	,create_time
     	,update_time
     </sql>
     <select id="getById" resultMap="BaseResultMap" parameterType="java.lang.Long">
@@ -21,7 +19,7 @@
     </select>
     <delete id="delById" parameterType="java.lang.Long">
         delete from sys_role
-        where id = #{id,jdbcType=INTEGER}
+        where role_id = #{roleId,jdbcType=INTEGER}
     </delete>
 
     <insert id="save" parameterType="site.yanyan.learn.pojo.sys.SysRole" keyProperty="id" useGeneratedKeys="true">
@@ -33,17 +31,17 @@
     <update id="editById" parameterType="site.yanyan.learn.pojo.sys.SysRole">
         update sys_role set  role_id = #{roleId
         ,jdbcType=INTEGER}
-     ,name = #{name,jdbcType=VARCHAR} ,create_time = #{createTime,jdbcType=TIMESTAMP} ,update_time = #{updateTime,jdbcType=TIMESTAMP}
-        where id = #{id,jdbcType=INTEGER}
+     ,name = #{name,jdbcType=VARCHAR}
+        where role_id = #{roleId,jdbcType=INTEGER}
     </update>
 
-    <select id="list" resultMap="BaseResultMap" parameterType="site.yanyan.learn.vo.SysRoleQuery">
+    <select id="list" resultMap="BaseResultMap" parameterType="site.yanyan.learn.vo.sys.SysRoleQuery">
         select
         <include refid="Base_Column_List"/>
         from sys_role
         <trim prefix="where" prefixOverrides="and|or">
         </trim>
-        order by id desc
+        order by role_id ASC
     </select>
 
     <select id="pagelist" resultMap="BaseResultMap">
