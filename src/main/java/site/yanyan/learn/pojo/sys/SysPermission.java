@@ -1,11 +1,7 @@
-package site.yanyan.learn.pojo;
+package site.yanyan.learn.pojo.sys;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.sql.Date;
-import java.sql.Timestamp;
 import java.util.Objects;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;

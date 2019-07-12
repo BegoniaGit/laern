@@ -7,8 +7,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import site.yanyan.learn.dao.SysUserDao;
-import site.yanyan.learn.pojo.PageTableData;
-import site.yanyan.learn.pojo.SysUser;
+import site.yanyan.learn.pojo.dev.PageTableData;
+import site.yanyan.learn.pojo.sys.SysUser;
 import site.yanyan.learn.vo.SysUserQuery;
 import site.yanyan.learn.service.SysUserService;
 

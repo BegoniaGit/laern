@@ -1,10 +1,10 @@
 package site.yanyan.learn.service;
 
-import site.yanyan.learn.pojo.SysUserRole;
+import site.yanyan.learn.pojo.sys.SysUserRole;
 import site.yanyan.learn.vo.SysUserRoleQuery;
 import java.util.List;
-import site.yanyan.learn.pojo.PageTableData;
-import org.springframework.transaction.annotation.Transactional;
+import site.yanyan.learn.pojo.dev.PageTableData;
+
 public interface SysUserRoleService {
 
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="site.yanyan.learn.dao.SysPermissionDao">
-    <resultMap id="BaseResultMap" type="site.yanyan.learn.pojo.SysPermission">
+    <resultMap id="BaseResultMap" type="site.yanyan.learn.pojo.sys.SysPermission">
         <id column="id" property="id" jdbcType="INTEGER"/>
 
     <result column="permission_name" property="permissionName" jdbcType="VARCHAR"/>
@@ -21,7 +21,7 @@
         where id = #{id,jdbcType=INTEGER}
     </delete>
 
-    <insert id="save" parameterType="site.yanyan.learn.pojo.SysPermission" keyProperty="id" useGeneratedKeys="true">
+    <insert id="save" parameterType="site.yanyan.learn.pojo.sys.SysPermission" keyProperty="id" useGeneratedKeys="true">
         insert into sys_permission ( permission_name
         )
         values (  #{permissionName
@@ -29,7 +29,7 @@
         )
     </insert>
 
-    <update id="editById" parameterType="site.yanyan.learn.pojo.SysPermission">
+    <update id="editById" parameterType="site.yanyan.learn.pojo.sys.SysPermission">
         update sys_permission set  permission_id = #{permissionId
         ,jdbcType=INTEGER}
      ,permission_name = #{permissionName,jdbcType=VARCHAR}

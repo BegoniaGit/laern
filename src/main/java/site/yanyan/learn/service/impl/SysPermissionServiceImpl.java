@@ -7,10 +7,10 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import site.yanyan.learn.dao.SysPermissionDao;
-import site.yanyan.learn.pojo.SysPermission;
+import site.yanyan.learn.pojo.sys.SysPermission;
 import site.yanyan.learn.vo.SysPermissionQuery;
 import site.yanyan.learn.service.SysPermissionService;
-import site.yanyan.learn.pojo.PageTableData;
+import site.yanyan.learn.pojo.dev.PageTableData;
 import com.github.pagehelper.PageHelper;
 @Service
 public class SysPermissionServiceImpl implements SysPermissionService{

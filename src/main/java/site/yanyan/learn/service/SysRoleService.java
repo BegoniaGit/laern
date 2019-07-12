@@ -1,8 +1,8 @@
 package site.yanyan.learn.service;
 
 
-import site.yanyan.learn.pojo.PageTableData;
-import site.yanyan.learn.pojo.SysRole;
+import site.yanyan.learn.pojo.dev.PageTableData;
+import site.yanyan.learn.pojo.sys.SysRole;
 import site.yanyan.learn.vo.SysRoleQuery;
 
 import java.util.List;

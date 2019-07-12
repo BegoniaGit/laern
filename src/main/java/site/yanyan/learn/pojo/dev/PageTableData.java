@@ -1,4 +1,4 @@
-package site.yanyan.learn.pojo;
+package site.yanyan.learn.pojo.dev;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;

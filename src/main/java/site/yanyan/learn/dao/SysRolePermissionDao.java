@@ -2,10 +2,8 @@ package site.yanyan.learn.dao;
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import site.yanyan.learn.vo.SysRolePermissionQuery;
-import site.yanyan.learn.pojo.SysRolePermission;
-import org.apache.ibatis.annotations.Delete;
+import site.yanyan.learn.pojo.sys.SysRolePermission;
 import org.apache.ibatis.annotations.Options;
-import com.github.pagehelper.PageInfo;
 import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface SysRolePermissionDao {

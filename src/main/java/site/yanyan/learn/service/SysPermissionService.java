@@ -1,10 +1,10 @@
 package site.yanyan.learn.service;
 
-import site.yanyan.learn.pojo.SysPermission;
+import site.yanyan.learn.pojo.sys.SysPermission;
 import site.yanyan.learn.vo.SysPermissionQuery;
 import java.util.List;
-import site.yanyan.learn.pojo.PageTableData;
-import org.springframework.transaction.annotation.Transactional;
+import site.yanyan.learn.pojo.dev.PageTableData;
+
 public interface SysPermissionService {
 
 

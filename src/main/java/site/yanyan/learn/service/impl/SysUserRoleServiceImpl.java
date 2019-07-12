@@ -7,10 +7,10 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import site.yanyan.learn.dao.SysUserRoleDao;
-import site.yanyan.learn.pojo.SysUserRole;
+import site.yanyan.learn.pojo.sys.SysUserRole;
 import site.yanyan.learn.vo.SysUserRoleQuery;
 import site.yanyan.learn.service.SysUserRoleService;
-import site.yanyan.learn.pojo.PageTableData;
+import site.yanyan.learn.pojo.dev.PageTableData;
 import com.github.pagehelper.PageHelper;
 @Service
 public class SysUserRoleServiceImpl implements SysUserRoleService{

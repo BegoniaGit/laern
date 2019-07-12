@@ -7,8 +7,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import site.yanyan.learn.dao.SysRoleDao;
-import site.yanyan.learn.pojo.PageTableData;
-import site.yanyan.learn.pojo.SysRole;
+import site.yanyan.learn.pojo.dev.PageTableData;
+import site.yanyan.learn.pojo.sys.SysRole;
 import site.yanyan.learn.vo.SysRoleQuery;
 import site.yanyan.learn.service.SysRoleService;
 

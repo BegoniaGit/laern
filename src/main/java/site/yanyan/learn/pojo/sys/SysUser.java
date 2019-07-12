@@ -1,4 +1,4 @@
-package site.yanyan.learn.pojo;
+package site.yanyan.learn.pojo.sys;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;

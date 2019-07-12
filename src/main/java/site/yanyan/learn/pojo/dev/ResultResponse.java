@@ -1,4 +1,4 @@
-package site.yanyan.learn.pojo;
+package site.yanyan.learn.pojo.dev;
 
 import io.swagger.annotations.ApiModelProperty;
 

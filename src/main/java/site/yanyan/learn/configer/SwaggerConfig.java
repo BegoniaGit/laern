@@ -7,19 +7,18 @@ import springfox.documentation.builders.ParameterBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.schema.ModelRef;
-import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.Contact;
 import springfox.documentation.service.Parameter;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 @Configuration
 @EnableSwagger2
-public class SwaggerConfig{
+public class SwaggerConfig {
 
 
     @Bean
@@ -45,15 +44,9 @@ public class SwaggerConfig{
     }
 
 
-
-
-
-
-
-
-
+    //一些额外的请求参数配置
     static List<Parameter> getParamList() {
-        List<Parameter> pars = new ArrayList<Parameter>();
+        List<Parameter> pars = new LinkedList<>();
         ParameterBuilder tokenPar = new ParameterBuilder();
         tokenPar.name("token").description("令牌")
                 .modelRef(new ModelRef("string"))

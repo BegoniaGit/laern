@@ -1,7 +1,7 @@
 package site.yanyan.learn.service;
 
-import site.yanyan.learn.pojo.PageTableData;
-import site.yanyan.learn.pojo.SysUser;
+import site.yanyan.learn.pojo.dev.PageTableData;
+import site.yanyan.learn.pojo.sys.SysUser;
 import site.yanyan.learn.vo.SysUserQuery;
 import java.util.List;
 

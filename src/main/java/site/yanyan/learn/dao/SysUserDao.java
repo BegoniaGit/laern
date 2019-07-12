@@ -2,9 +2,9 @@ package site.yanyan.learn.dao;
 import java.util.List;
 
 import org.apache.ibatis.annotations.*;
+import site.yanyan.learn.vo.LoginUserQuery;
 import site.yanyan.learn.vo.SysUserQuery;
-import site.yanyan.learn.pojo.SysUser;
-import com.github.pagehelper.PageInfo;
+import site.yanyan.learn.pojo.sys.SysUser;
 
 @Mapper
 public interface SysUserDao {
@@ -44,5 +44,8 @@ public interface SysUserDao {
 
     @Select("SELECT COUNT(*) FROM sys_user")
     int getCount();
+
+
+    SysUser getUserByInfo(LoginUserQuery loginUserQuery);
      
 }

@@ -3,7 +3,7 @@ package site.yanyan.learn.controller.base;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import site.yanyan.learn.pojo.ResultResponse;
+import site.yanyan.learn.pojo.dev.ResultResponse;
 
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.context.MessageSource;

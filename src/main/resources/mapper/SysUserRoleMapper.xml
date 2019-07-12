@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="site.yanyan.learn.dao.SysUserRoleDao">
-    <resultMap id="BaseResultMap" type="site.yanyan.learn.pojo.SysUserRole">
+    <resultMap id="BaseResultMap" type="site.yanyan.learn.pojo.sys.SysUserRole">
         <id column="id" property="id" jdbcType="INTEGER"/>
 
     <result column="role_id" property="roleId" jdbcType="INTEGER"/>
@@ -21,14 +21,14 @@
         where id = #{id,jdbcType=INTEGER}
     </delete>
 
-    <insert id="save" parameterType="site.yanyan.learn.pojo.SysUserRole" keyProperty="id" useGeneratedKeys="true">
+    <insert id="save" parameterType="site.yanyan.learn.pojo.sys.SysUserRole" keyProperty="id" useGeneratedKeys="true">
         insert into sys_user_role ( user_id,role_id
         )
         values (  #{userId,jdbcType=INTEGER ，#{roleId,jdbcType=INTEGER}
         )
     </insert>
 
-    <update id="editById" parameterType="site.yanyan.learn.pojo.SysUserRole">
+    <update id="editById" parameterType="site.yanyan.learn.pojo.sys.SysUserRole">
         update sys_user_role set  user_id = #{userId
         ,jdbcType=INTEGER}
      ,role_id = #{roleId,jdbcType=INTEGER}
