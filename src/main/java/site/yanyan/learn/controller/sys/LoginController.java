@@ -3,7 +3,6 @@ package site.yanyan.learn.controller.sys;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -20,7 +19,6 @@ import site.yanyan.learn.pojo.dev.ResultResponse;
 import site.yanyan.learn.pojo.sys.SysPermission;
 import site.yanyan.learn.pojo.sys.SysRole;
 import site.yanyan.learn.pojo.sys.SysUser;
-import site.yanyan.learn.utils.Base64Util;
 import site.yanyan.learn.utils.SerializeUtils;
 import site.yanyan.learn.vo.sys.LoginUserQuery;
 

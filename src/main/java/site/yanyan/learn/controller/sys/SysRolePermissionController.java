@@ -1,21 +1,20 @@
 package site.yanyan.learn.controller.sys;
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
-import site.yanyan.learn.pojo.dev.ResultResponse;
-import site.yanyan.learn.pojo.base.BaseRecord;
-import site.yanyan.learn.vo.sys.SysRolePermissionQuery;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import site.yanyan.learn.pojo.sys.SysRolePermission;
-import site.yanyan.learn.service.sys.SysRolePermissionService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 import site.yanyan.learn.controller.base.BaseController;
 import site.yanyan.learn.pojo.dev.PageTableData;
+import site.yanyan.learn.pojo.dev.ResultResponse;
+import site.yanyan.learn.pojo.sys.SysRolePermission;
+import site.yanyan.learn.service.sys.SysRolePermissionService;
+import site.yanyan.learn.vo.sys.SysRolePermissionQuery;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Api(tags = "角色权限")

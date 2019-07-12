@@ -1,20 +1,20 @@
 package site.yanyan.learn.controller.sys;
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
-import site.yanyan.learn.pojo.dev.ResultResponse;
-import site.yanyan.learn.pojo.base.BaseRecord;
-import site.yanyan.learn.vo.sys.SysPermissionQuery;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import site.yanyan.learn.pojo.sys.SysPermission;
-import site.yanyan.learn.service.sys.SysPermissionService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 import site.yanyan.learn.controller.base.BaseController;
 import site.yanyan.learn.pojo.dev.PageTableData;
+import site.yanyan.learn.pojo.dev.ResultResponse;
+import site.yanyan.learn.pojo.sys.SysPermission;
+import site.yanyan.learn.service.sys.SysPermissionService;
+import site.yanyan.learn.vo.sys.SysPermissionQuery;
+
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 @Api(tags = "权限")
 @RestController
 @Validated
