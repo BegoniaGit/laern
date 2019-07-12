@@ -18,7 +18,7 @@ import site.yanyan.learn.pojo.dev.PageTableData;
 @Api(tags = "角色")
 @RestController
 @Validated
-@RequestMapping("/sysRole")
+@RequestMapping("/sys/role")
 public class SysRoleController extends BaseController {
 
 	@Autowired

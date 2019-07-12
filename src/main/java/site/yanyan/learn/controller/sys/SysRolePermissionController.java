@@ -21,7 +21,7 @@ import java.util.List;
 @Api(tags = "角色权限")
 @RestController
 @Validated
-@RequestMapping("/sysRolePermission")
+@RequestMapping("/sys/rolepermission")
 public class SysRolePermissionController extends BaseController {
 
 	@Autowired

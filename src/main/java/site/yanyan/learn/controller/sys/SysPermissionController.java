@@ -18,7 +18,7 @@ import site.yanyan.learn.pojo.dev.PageTableData;
 @Api(tags = "权限")
 @RestController
 @Validated
-@RequestMapping("/sysPermission")
+@RequestMapping("/sys/permission")
 public class SysPermissionController extends BaseController {
 
 	@Autowired

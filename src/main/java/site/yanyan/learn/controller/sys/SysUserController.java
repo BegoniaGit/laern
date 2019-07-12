@@ -23,7 +23,7 @@ import javax.validation.constraints.NotNull;
 @Api(tags = "用户")
 @RestController
 @Validated
-@RequestMapping("/sysUser")
+@RequestMapping("/sys/user")
 public class SysUserController extends BaseController {
 
 	@Autowired

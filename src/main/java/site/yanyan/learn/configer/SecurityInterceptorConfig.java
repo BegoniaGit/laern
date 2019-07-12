@@ -68,14 +68,21 @@ public class SecurityInterceptorConfig extends HandlerInterceptorAdapter {
             sysUser.setPermissionArray(permissions);
             UserUtil.setCurrentUser(sysUser);
 
-            return true;
+            String url = request.getRequestURI();
+            Stamp.war(url);
+            for (String per : permissions)
+                if (url.startsWith(per))
+                    return true;
+            PrintWriter p = response.getWriter();
+            p.write("{\"code\":-1,\"msg\":\"未拥有访问权限\"}");
+            p.close();
+            return false;
 
         } catch (JWTVerificationException exception) {
             Stamp.err("token 验证异常");
             response.setStatus(SC_OK);
             PrintWriter p = response.getWriter();
-            p.println();
-            p.println("{code:-1,msg:\"token验证错误\"}");
+            p.write("{\"code\":-1,\"msg\":\"token验证错误\"}");
             p.close();
             return false;
         }
