@@ -50,7 +50,11 @@ public class SysUserController extends BaseController {
     @ApiOperation(value = "获取当前用户")
     @PostMapping(value = "/curuser")
     public ResultResponse<SysUser> save() {
-        return new ResultResponse<SysUser>(0, "ok", UserUtil.getCurrentUser());
+        SysUser loginUser=UserUtil.getCurrentUser();
+        SysUser sysUser=sysUserService.getById(loginUser.getUserId());
+        sysUser.setPermissionArray(loginUser.getPermissionArray());
+        sysUser.setRoleId(loginUser.getRoleId());
+        return new ResultResponse<SysUser>(0, "ok", sysUser);
     }
 
 
@@ -78,6 +82,5 @@ public class SysUserController extends BaseController {
         return new ResultResponse<PageTableData<SysUser>>(
                 sysUserService.list(param.getPage(), param.getPageSize(), param));
     }
-
 
 }

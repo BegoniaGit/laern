@@ -48,7 +48,7 @@ public class SwaggerConfig {
     static List<Parameter> getParamList() {
         List<Parameter> pars = new LinkedList<>();
         ParameterBuilder tokenPar = new ParameterBuilder();
-        tokenPar.name("token").description("令牌")
+        tokenPar.name("Authentication").description("令牌")
                 .modelRef(new ModelRef("string"))
                 .parameterType("header")
                 .required(false).build();

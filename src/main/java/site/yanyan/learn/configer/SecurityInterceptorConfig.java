@@ -33,9 +33,13 @@ public class SecurityInterceptorConfig extends HandlerInterceptorAdapter {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
         //设置响应头
-        response.setHeader("sessionstatus", "timeout");//在响应头设置session状态
         response.setHeader("server", "Linux");
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Headers", "content-type,authentication,dataType");
         response.setContentType("Application/json;charset=utf-8");
+
+        if (request.getMethod().equals("OPTIONS"))
+            return true;
 
         //排除处理相关url
         String[] excludeUrls = {"/secret/login"};
@@ -46,7 +50,7 @@ public class SecurityInterceptorConfig extends HandlerInterceptorAdapter {
                 return true;
 
         //Token验证
-        String token = request.getHeader("token");
+        String token = request.getHeader("Authentication");
         if (token == null || "".equals(token))
             return false;
 
@@ -68,21 +72,23 @@ public class SecurityInterceptorConfig extends HandlerInterceptorAdapter {
             sysUser.setPermissionArray(permissions);
             UserUtil.setCurrentUser(sysUser);
 
+
             String url = request.getRequestURI();
             Stamp.war(url);
             for (String per : permissions)
                 if (url.startsWith(per))
                     return true;
+
             PrintWriter p = response.getWriter();
             p.write("{\"code\":-1,\"msg\":\"未拥有访问权限\"}");
+            response.setStatus(SC_OK);
             p.close();
             return false;
 
         } catch (JWTVerificationException exception) {
-            Stamp.err("token 验证异常");
-            response.setStatus(SC_OK);
             PrintWriter p = response.getWriter();
             p.write("{\"code\":-1,\"msg\":\"token验证错误\"}");
+            response.setStatus(SC_OK);
             p.close();
             return false;
         }

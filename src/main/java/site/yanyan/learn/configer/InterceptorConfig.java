@@ -40,7 +40,9 @@ public class InterceptorConfig extends WebMvcConfigurerAdapter {
                 .excludePathPatterns("/css/**")
                 .excludePathPatterns("/js/**")
                 .excludePathPatterns("/images/**")
+                .excludePathPatterns("/webjars/**")
                 .excludePathPatterns("/swagger-resources/**")
-                .excludePathPatterns("/swagger-ui.html");
+                .excludePathPatterns("/swagger-ui.html")
+                .excludePathPatterns("/swagger-ui/**");
     }
 }
