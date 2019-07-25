@@ -41,7 +41,7 @@ public class GenerateControllerTest {
 	@Test
 	public void testSave() throws Exception {
 
-		String tables[]={"sys_permission"};  //表名
+		String tables[]={"problem","remark","answer"};  //表名
 		String packageNamePrime="site.yanyan.learn.";
 
 		GenerateInput t = new GenerateInput();

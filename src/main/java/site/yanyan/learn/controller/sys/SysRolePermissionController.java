@@ -23,42 +23,40 @@ import java.util.List;
 @RequestMapping("/sys/rolepermission")
 public class SysRolePermissionController extends BaseController {
 
-	@Autowired
-	public SysRolePermissionService sysRolePermissionService;
+    @Autowired
+    public SysRolePermissionService sysRolePermissionService;
 
-	@ApiOperation(value="删除记录")
-	@DeleteMapping(value="/del")
-	public ResultResponse<SysRolePermission> delById(@ApiParam(required=true,value="SysRolePermission")
-        @RequestBody @NotNull SysRolePermission recode) {
-        SysRolePermission re =sysRolePermissionService.delByInfo(recode);
+    @ApiOperation(value = "删除记录")
+    @DeleteMapping(value = "/del")
+    public ResultResponse<SysRolePermission> delById(@ApiParam(required = true, value = "SysRolePermission")
+                                                     @RequestBody @NotNull SysRolePermission recode) {
+        SysRolePermission re = sysRolePermissionService.delByInfo(recode);
         return new ResultResponse<SysRolePermission>(re);
     }
 
-    @ApiOperation(value="新增记录")
-    @PostMapping(value="/add")
-    public ResultResponse<SysRolePermission> save(@ApiParam(required = true, value = "添加SysRolePermission")@Valid
-        @RequestBody SysRolePermission record) {
+    @ApiOperation(value = "新增记录")
+    @PostMapping(value = "/add")
+    public ResultResponse<SysRolePermission> save(@ApiParam(required = true, value = "添加SysRolePermission") @Valid
+                                                  @RequestBody SysRolePermission record) {
         sysRolePermissionService.save(record);
-        return new ResultResponse<SysRolePermission>(0,"ok", record);
+        return new ResultResponse<SysRolePermission>(0, "ok", record);
     }
 
     @ApiOperation(value = "根据roleId查询记录")
     @GetMapping(value = "/get")
     public ResultResponse<List<SysRolePermission>> getById(
-    @ApiParam(required = true, value = "查询编号")
-    @RequestParam @Valid @NotNull Long recode) {
-        List<SysRolePermission> record=sysRolePermissionService.getByRoleId(recode);
+            @ApiParam(required = true, value = "查询编号")
+            @RequestParam @Valid @NotNull Long recode) {
+        List<SysRolePermission> record = sysRolePermissionService.getByRoleId(recode);
         return new ResultResponse<List<SysRolePermission>>(record);
     }
-
-
 
     @ApiOperation(value = "详细列表查询")
     @PostMapping(value = "/list")
     public ResultResponse<PageTableData<SysRolePermission>> list(@ApiParam(required = false, value = "查询参数")
-        @Valid @RequestBody SysRolePermissionQuery param) {
+                                                                 @Valid @RequestBody SysRolePermissionQuery param) {
         return new ResultResponse<PageTableData<SysRolePermission>>(
-            sysRolePermissionService.list(param.getPage(), param.getPageSize(), param));
+                sysRolePermissionService.list(param.getPage(), param.getPageSize(), param));
     }
 
 }

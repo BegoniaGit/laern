@@ -63,7 +63,7 @@ public class LoginController extends BaseController {
         sysUser.setPermissions(sysPermission);
 
 
-        final long OVER_TIME = 24 * 60 * 60 * 1000;
+        final long OVER_TIME = 24 * 60 * 60 * 1000;  //设置过期时间
 
         final Base64.Encoder encoder = Base64.getEncoder();
 

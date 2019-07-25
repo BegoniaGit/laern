@@ -50,13 +50,12 @@ public class SysUserController extends BaseController {
     @ApiOperation(value = "获取当前用户")
     @PostMapping(value = "/curuser")
     public ResultResponse<SysUser> save() {
-        SysUser loginUser=UserUtil.getCurrentUser();
-        SysUser sysUser=sysUserService.getById(loginUser.getUserId());
+        SysUser loginUser = UserUtil.getCurrentUser();
+        SysUser sysUser = sysUserService.getById(loginUser.getUserId());
         sysUser.setPermissionArray(loginUser.getPermissionArray());
         sysUser.setRoleId(loginUser.getRoleId());
         return new ResultResponse<SysUser>(0, "ok", sysUser);
     }
-
 
     @ApiOperation(value = "根据ID查询记录")
     @GetMapping(value = "/get")

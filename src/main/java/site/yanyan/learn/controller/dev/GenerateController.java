@@ -46,7 +46,7 @@ public class GenerateController {
 		if (input.getMybatisMapperName()==null)		
 			input.setMybatisMapperName(generateService.upperFirstChar(tableName)+"Mapper");
 
-		if (input.getServiceName()==null)		
+		if (input.getServiceName()==null)
 			input.setServiceName(generateService.upperFirstChar(tableName)+"Service");
 	
 		if (input.getControllerName()==null)		
