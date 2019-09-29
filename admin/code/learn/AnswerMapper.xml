@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="site.yanyan.learn.dao.AnswerDao">
+    <resultMap id="BaseResultMap" type="site.yanyan.learn.pojo.Answer">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+
+    <result column="answer" property="answer" jdbcType="VARCHAR"/>
+    <result column="answer_img_path" property="answerImgPath" jdbcType="VARCHAR"/>
+    <result column="answer_user_id" property="answerUserId" jdbcType="INTEGER"/>
+    <result column="problem_id" property="problemId" jdbcType="INTEGER"/>
+    <result column="answer_create_time" property="answerCreateTime" jdbcType="TIMESTAMP"/>
+    <result column="answer_update_time" property="answerUpdateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    	answer_id
+    	,answer
+    	,answer_img_path
+    	,answer_user_id
+    	,problem_id
+    	,answer_create_time
+    	,answer_update_time
+    </sql>
+    <select id="getById" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from answer
+        where answer_id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="delById" parameterType="java.lang.Long">
+        delete from answer
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="save" parameterType="site.yanyan.learn.pojo.Answer" keyProperty="id" useGeneratedKeys="true">
+        insert into answer ( answer
+        ,answer_img_path
+        ,answer_user_id
+        ,problem_id
+        ,answer_create_time
+        ,answer_update_time
+        )
+        values (  #{answer
+        ,jdbcType=VARCHAR},#{answerImgPath
+        ,jdbcType=VARCHAR},#{answerUserId
+        ,jdbcType=INTEGER},#{problemId
+        ,jdbcType=INTEGER},#{answerCreateTime
+        ,jdbcType=TIMESTAMP},#{answerUpdateTime
+        ,jdbcType=TIMESTAMP}
+        )
+    </insert>
+
+    <update id="editById" parameterType="site.yanyan.learn.pojo.Answer">
+        update answer set  answer_id = #{answerId
+        ,jdbcType=INTEGER}
+     ,answer = #{answer,jdbcType=VARCHAR} ,answer_img_path = #{answerImgPath,jdbcType=VARCHAR} ,answer_user_id = #{answerUserId,jdbcType=INTEGER} ,problem_id = #{problemId,jdbcType=INTEGER} ,answer_create_time = #{answerCreateTime,jdbcType=TIMESTAMP} ,answer_update_time = #{answerUpdateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="list" resultMap="BaseResultMap" parameterType="site.yanyan.learn.vo.AnswerQuery">
+        select
+        <include refid="Base_Column_List"/>
+        from answer
+        <trim prefix="where" prefixOverrides="and|or">
+        </trim>
+        order by id desc
+    </select>
+
+    <select id="pagelist" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from answer limit  #{pageNum},#{pageSize};
+    </select>
+</mapper>

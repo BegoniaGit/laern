@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="site.yanyan.learn.dao.serve.RemarkDao">
+    <resultMap id="BaseResultMap" type="site.yanyan.learn.pojo.serve.Remark">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+
+    <result column="remark_content" property="remarkContent" jdbcType="VARCHAR"/>
+    <result column="remark_create_time" property="remarkCreateTime" jdbcType="TIMESTAMP"/>
+    <result column="answer_id" property="answerId" jdbcType="INTEGER"/>
+    <result column="user_id" property="userId" jdbcType="INTEGER"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    	remark_id
+    	,remark_content
+    	,remark_create_time
+    	,answer_id
+    	,user_id
+    </sql>
+    <select id="getById" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from remark
+        where remark_id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="delById" parameterType="java.lang.Long">
+        delete from remark
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="save" parameterType="site.yanyan.learn.pojo.serve.Remark" keyProperty="id" useGeneratedKeys="true">
+        insert into remark ( remark_content
+        ,remark_create_time
+        ,answer_id
+        ,user_id
+        )
+        values (  #{remarkContent
+        ,jdbcType=VARCHAR},#{remarkCreateTime
+        ,jdbcType=TIMESTAMP},#{answerId
+        ,jdbcType=INTEGER},#{userId
+        ,jdbcType=INTEGER}
+        )
+    </insert>
+
+    <update id="editById" parameterType="site.yanyan.learn.pojo.serve.Remark">
+        update remark set  remark_id = #{remarkId
+        ,jdbcType=INTEGER}
+     ,remark_content = #{remarkContent,jdbcType=VARCHAR} ,remark_create_time = #{remarkCreateTime,jdbcType=TIMESTAMP} ,answer_id = #{answerId,jdbcType=INTEGER} ,user_id = #{userId,jdbcType=INTEGER}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="list" resultMap="BaseResultMap" parameterType="site.yanyan.learn.vo.serve.RemarkQuery">
+        select
+        <include refid="Base_Column_List"/>
+        from remark
+        <trim prefix="where" prefixOverrides="and|or">
+        </trim>
+        order by id desc
+    </select>
+
+    <select id="pagelist" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from remark limit  #{pageNum},#{pageSize};
+    </select>
+</mapper>

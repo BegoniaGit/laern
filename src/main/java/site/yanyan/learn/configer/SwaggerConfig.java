@@ -43,6 +43,17 @@ public class SwaggerConfig {
                 .globalOperationParameters(SwaggerConfig.getParamList());
     }
 
+    @Bean
+    public Docket serve() {
+        return new Docket(DocumentationType.SWAGGER_2).groupName("功能API")
+                .apiInfo(new ApiInfoBuilder().title("用户管理-接口文档")
+                        .contact(new Contact("言言无绝期", "www.yanyan.site", "zhaoxubin2016@live.com")).version("1.0")
+                        .build())
+                .select().paths(PathSelectors.any())
+                .apis(RequestHandlerSelectors.basePackage("site.yanyan.learn.controller.serve")).build()
+                .globalOperationParameters(SwaggerConfig.getParamList());
+    }
+
 
     //一些额外的请求参数配置
     static List<Parameter> getParamList() {

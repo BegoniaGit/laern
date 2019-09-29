@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="site.yanyan.learn.dao.serve.SubjectDao">
+    <resultMap id="BaseResultMap" type="site.yanyan.learn.pojo.serve.Subject">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+
+    <result column="subject_name" property="subjectName" jdbcType="VARCHAR"/>
+    <result column="subject_class" property="subjectClass" jdbcType="INTEGER"/>
+    <result column="subject_parent" property="subjectParent" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    	subject_id
+    	,subject_name
+    	,subject_class
+    	,subject_parent
+    </sql>
+    <select id="getById" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from subject
+        where subject_id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="delById" parameterType="java.lang.Long">
+        delete from subject
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="save" parameterType="site.yanyan.learn.pojo.serve.Subject" keyProperty="id" useGeneratedKeys="true">
+        insert into subject ( subject_name
+        ,subject_class
+        ,subject_parent
+        )
+        values (  #{subjectName
+        ,jdbcType=VARCHAR},#{subjectClass
+        ,jdbcType=INTEGER},#{subjectParent
+        ,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <update id="editById" parameterType="site.yanyan.learn.pojo.serve.Subject">
+        update subject set  subject_id = #{subjectId
+        ,jdbcType=INTEGER}
+     ,subject_name = #{subjectName,jdbcType=VARCHAR} ,subject_class = #{subjectClass,jdbcType=INTEGER} ,subject_parent = #{subjectParent,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="list" resultMap="BaseResultMap" parameterType="site.yanyan.learn.vo.serve.SubjectQuery">
+        select
+        <include refid="Base_Column_List"/>
+        from subject
+        <trim prefix="where" prefixOverrides="and|or">
+        </trim>
+        order by id desc
+    </select>
+
+    <select id="pagelist" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from subject limit  #{pageNum},#{pageSize};
+    </select>
+</mapper>

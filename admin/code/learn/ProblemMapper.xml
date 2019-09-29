@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="site.yanyan.learn.dao.ProblemDao">
+    <resultMap id="BaseResultMap" type="site.yanyan.learn.pojo.Problem">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+
+    <result column="problem_title" property="problemTitle" jdbcType="VARCHAR"/>
+    <result column="problem_context" property="problemContext" jdbcType="VARCHAR"/>
+    <result column="solve" property="solve" jdbcType="INTEGER"/>
+    <result column="user_id" property="userId" jdbcType="INTEGER"/>
+    <result column="subject_id" property="subjectId" jdbcType="INTEGER"/>
+    <result column="problem_remark_count" property="problemRemarkCount" jdbcType="INTEGER"/>
+    <result column="problem_view_count" property="problemViewCount" jdbcType="INTEGER"/>
+    <result column="problem_create_time" property="problemCreateTime" jdbcType="TIMESTAMP"/>
+    <result column="problem_update_time" property="problemUpdateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    	problem_id
+    	,problem_title
+    	,problem_context
+    	,solve
+    	,user_id
+    	,subject_id
+    	,problem_remark_count
+    	,problem_view_count
+    	,problem_create_time
+    	,problem_update_time
+    </sql>
+    <select id="getById" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from problem
+        where problem_id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="delById" parameterType="java.lang.Long">
+        delete from problem
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="save" parameterType="site.yanyan.learn.pojo.Problem" keyProperty="id" useGeneratedKeys="true">
+        insert into problem ( problem_title
+        ,problem_context
+        ,solve
+        ,user_id
+        ,subject_id
+        ,problem_remark_count
+        ,problem_view_count
+        ,problem_create_time
+        ,problem_update_time
+        )
+        values (  #{problemTitle
+        ,jdbcType=VARCHAR},#{problemContext
+        ,jdbcType=VARCHAR},#{solve
+        ,jdbcType=INTEGER},#{userId
+        ,jdbcType=INTEGER},#{subjectId
+        ,jdbcType=INTEGER},#{problemRemarkCount
+        ,jdbcType=INTEGER},#{problemViewCount
+        ,jdbcType=INTEGER},#{problemCreateTime
+        ,jdbcType=TIMESTAMP},#{problemUpdateTime
+        ,jdbcType=TIMESTAMP}
+        )
+    </insert>
+
+    <update id="editById" parameterType="site.yanyan.learn.pojo.Problem">
+        update problem set  problem_id = #{problemId
+        ,jdbcType=INTEGER}
+     ,problem_title = #{problemTitle,jdbcType=VARCHAR} ,problem_context = #{problemContext,jdbcType=VARCHAR} ,solve = #{solve,jdbcType=INTEGER} ,user_id = #{userId,jdbcType=INTEGER} ,subject_id = #{subjectId,jdbcType=INTEGER} ,problem_remark_count = #{problemRemarkCount,jdbcType=INTEGER} ,problem_view_count = #{problemViewCount,jdbcType=INTEGER} ,problem_create_time = #{problemCreateTime,jdbcType=TIMESTAMP} ,problem_update_time = #{problemUpdateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="list" resultMap="BaseResultMap" parameterType="site.yanyan.learn.vo.ProblemQuery">
+        select
+        <include refid="Base_Column_List"/>
+        from problem
+        <trim prefix="where" prefixOverrides="and|or">
+        </trim>
+        order by id desc
+    </select>
+
+    <select id="pagelist" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from problem limit  #{pageNum},#{pageSize};
+    </select>
+</mapper>

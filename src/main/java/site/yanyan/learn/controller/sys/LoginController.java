@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import site.yanyan.kit.Stamp;
+import site.yan.kit.Stamp;
 import site.yanyan.learn.controller.base.BaseController;
 import site.yanyan.learn.dao.sys.SysPermissionDao;
 import site.yanyan.learn.dao.sys.SysRoleDao;
@@ -42,23 +42,33 @@ public class LoginController extends BaseController {
     @Autowired
     SysPermissionDao sysPermissionDao;
 
+//    @Autowired
+//    ProducerMQ producerMQ;
+//
+//    @Autowired
+//    FirstSender firstSender;
 
     @PostMapping(value = "/login")
     public ResultResponse<String> login(@RequestBody LoginUserQuery loginUserQuery) {
 
 
+
+//        firstSender.send("1",loginUserQuery.getInfo());
+
         SysUser sysUser = sysUserDao.getUserByInfo(loginUserQuery);
 
 
-        if (sysUser == null)
+        if (sysUser == null) {
             return new ResultResponse<String>(-1, "登录信息错误");
+        }
 
         SysRole sysRole = sysRoleDao.getById(sysUser.getRoleId());
         List<SysPermission> sysPermission = sysPermissionDao.listByRoleId(sysRole.getRoleId());
         String[] permissions = new String[sysPermission.size()];
         int count = 0;
-        for (SysPermission s : sysPermission)
+        for (SysPermission s : sysPermission) {
             permissions[count++] = s.getPermissionName();
+        }
         sysUser.setRoleName(sysRole.getName());
         sysUser.setPermissions(sysPermission);
 
